@@ -107,18 +107,6 @@ collaborative-canvas/
 5. **No Drawing Export**: Cannot save/export drawings as images
 6. **Performance**: May experience lag with 10+ simultaneous users drawing heavily
 
-## ⏱️ Time Spent
-
-- **Initial Setup**: 1 hour
-- **Backend Implementation**: 3 hours
-- **Frontend Implementation**: 4 hours
-- **Real-time Synchronization**: 2 hours
-- **Undo/Redo System**: 2 hours
-- **UI/UX Polish**: 1.5 hours
-- **Testing & Bug Fixes**: 1.5 hours
-- **Documentation**: 1 hour
-
-**Total**: ~16 hours
 
 ## 🔧 Troubleshooting
 ## Testing with Multiple Users
@@ -199,5 +187,6 @@ MIT
 ## 👤 Author
 
 Built as a technical assignment demonstrating real-time collaborative application development.
+
 
 
