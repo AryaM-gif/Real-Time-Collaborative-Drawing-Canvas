@@ -11,100 +11,161 @@
 <body>
     <div class="container">
         <header>
-            <h1 class="logo">
-                <span class="logo-icon">✨</span>
-                <span class="logo-text">Sync</span><span class="logo-text-accent">Sketch</span>
-                <span class="logo-icon">✨</span>
-            </h1>
-            <div class="user-info">
-                <div class="online-users">
-                    <span class="label">Online:</span>
-                    <div id="users-list"></div>
+            <div class="header-left">
+                <h1 class="logo">
+                    <span class="logo-icon">✨</span>
+                    <span class="logo-text">Sync</span><span class="logo-text-accent">Sketch</span>
+                    <span class="logo-icon">✨</span>
+                </h1>
+                <div class="connection-status">
+                    <span id="connection-indicator" class="status-dot"></span>
+                    <span id="connection-text">Connecting...</span>
+                </div>
+            </div>
+            
+            <!-- Top Toolbar -->
+            <div class="top-toolbar">
+                <div class="toolbar-group">
+                    <div class="toolbar-label">Tools</div>
+                    <div class="toolbar-buttons">
+                        <button id="brush-tool" class="toolbar-btn active" data-tool="brush" title="Brush (B)">
+                            <span class="tool-icon">🖌️</span>
+                            <span class="tool-name">Brush</span>
+                        </button>
+                        <button id="line-tool" class="toolbar-btn" data-tool="line" title="Line (L)">
+                            <span class="tool-icon">📏</span>
+                            <span class="tool-name">Line</span>
+                        </button>
+                        <button id="eraser-tool" class="toolbar-btn" data-tool="eraser" title="Eraser (E)">
+                            <span class="tool-icon">🧹</span>
+                            <span class="tool-name">Eraser</span>
+                        </button>
+                        <button id="fill-tool" class="toolbar-btn" data-tool="fill" title="Fill (F)">
+                            <span class="tool-icon">🎨</span>
+                            <span class="tool-name">Fill</span>
+                        </button>
+                        <button id="sparkle-tool" class="toolbar-btn" data-tool="sparkle" title="Sparkle (S)">
+                            <span class="tool-icon">✨</span>
+                            <span class="tool-name">Sparkle</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="toolbar-separator"></div>
+
+                <div class="toolbar-group">
+                    <div class="toolbar-label">Shapes</div>
+                    <div class="toolbar-buttons">
+                        <button id="rect-tool" class="toolbar-btn" data-tool="rectangle" title="Rectangle (R)">
+                            <span class="tool-icon">▭</span>
+                            <span class="tool-name">Rect</span>
+                        </button>
+                        <button id="square-tool" class="toolbar-btn" data-tool="square" title="Square (Q)">
+                            <span class="tool-icon">⬜</span>
+                            <span class="tool-name">Square</span>
+                        </button>
+                        <button id="circle-tool" class="toolbar-btn" data-tool="circle" title="Circle (C)">
+                            <span class="tool-icon">⭕</span>
+                            <span class="tool-name">Circle</span>
+                        </button>
+                        <button id="triangle-tool" class="toolbar-btn" data-tool="triangle" title="Triangle (T)">
+                            <span class="tool-icon">▲</span>
+                            <span class="tool-name">Triangle</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="toolbar-separator"></div>
+
+                <div class="toolbar-group">
+                    <div class="toolbar-label">Actions</div>
+                    <div class="toolbar-buttons">
+                        <button id="undo-btn" class="toolbar-btn action" title="Undo (Ctrl+Z)">
+                            <span class="tool-icon">↶</span>
+                            <span class="tool-name">Undo</span>
+                        </button>
+                        <button id="redo-btn" class="toolbar-btn action" title="Redo (Ctrl+Shift+Z)">
+                            <span class="tool-icon">↷</span>
+                            <span class="tool-name">Redo</span>
+                        </button>
+                        <button id="clear-btn" class="toolbar-btn action danger" title="Clear Canvas">
+                            <span class="tool-icon">🗑️</span>
+                            <span class="tool-name">Clear</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="header-right">
+                <div class="user-info">
+                    <div class="online-users">
+                        <span class="label">👥 Online:</span>
+                        <div id="users-list"></div>
+                    </div>
                 </div>
             </div>
         </header>
 
         <div class="main-content">
-            <aside class="toolbar">
-                <div class="tool-section">
-                    <h3>🛠️ Tools</h3>
-                    <div class="tool-grid">
-                        <button id="brush-tool" class="tool-btn active" data-tool="brush" title="Brush">
-                            🖌️ Brush
-                        </button>
-                        <button id="line-tool" class="tool-btn" data-tool="line" title="Straight Line">
-                            📏 Line
-                        </button>
-                        <button id="eraser-tool" class="tool-btn" data-tool="eraser" title="Eraser">
-                            🧹 Eraser
-                        </button>
-                        <button id="fill-tool" class="tool-btn" data-tool="fill" title="Fill Color">
-                            🎨 Fill
-                        </button>
-                        <button id="sparkle-tool" class="tool-btn" data-tool="sparkle" title="Sparkle">
-                            ✨ Sparkle
-                        </button>
-                    </div>
-                </div>
-
-                <div class="tool-section">
-                    <h3>🎨 Color</h3>
-                    <div class="color-picker">
-                        <input type="color" id="color-input" value="#9E1C60">
-                        <div class="color-presets">
-                            <div class="color-preset" data-color="#000000" style="background: #000000"></div>
-                            <div class="color-preset" data-color="#ffffff" style="background: #ffffff; border: 2px solid #ddd"></div>
-                            <div class="color-preset" data-color="#FF0000" style="background: #FF0000"></div>
-                            <div class="color-preset" data-color="#00FF00" style="background: #00FF00"></div>
-                            <div class="color-preset" data-color="#0000FF" style="background: #0000FF"></div>
-                            <div class="color-preset" data-color="#FFFF00" style="background: #FFFF00"></div>
-                            <div class="color-preset" data-color="#FFA500" style="background: #FFA500"></div>
-                            <div class="color-preset" data-color="#800080" style="background: #800080"></div>
-                            <div class="color-preset" data-color="#FFC0CB" style="background: #FFC0CB"></div>
-                            <div class="color-preset" data-color="#808080" style="background: #808080"></div>
-                            <div class="color-preset" data-color="#A52A2A" style="background: #A52A2A"></div>
-                            <div class="color-preset" data-color="#9E1C60" style="background: #9E1C60"></div>
+            <aside class="sidebar">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">
+                        <span class="title-icon">🎨</span>
+                        Color Palette
+                    </h3>
+                    <div class="color-picker-container">
+                        <div class="color-picker-main">
+                            <label for="color-input" class="color-label">Primary Color</label>
+                            <div class="color-input-wrapper">
+                                <input type="color" id="color-input" value="#9E1C60">
+                                <div class="color-display" id="current-color-display" style="background: #9E1C60"></div>
+                            </div>
+                        </div>
+                        <div class="color-presets-container">
+                            <div class="presets-label">Quick Colors</div>
+                            <div class="color-presets">
+                                <div class="color-preset" data-color="#000000" style="background: #000000" title="Black"></div>
+                                <div class="color-preset" data-color="#ffffff" style="background: #ffffff; border: 2px solid #ddd" title="White"></div>
+                                <div class="color-preset" data-color="#FF0000" style="background: #FF0000" title="Red"></div>
+                                <div class="color-preset" data-color="#00FF00" style="background: #00FF00" title="Green"></div>
+                                <div class="color-preset" data-color="#0000FF" style="background: #0000FF" title="Blue"></div>
+                                <div class="color-preset" data-color="#FFFF00" style="background: #FFFF00" title="Yellow"></div>
+                                <div class="color-preset" data-color="#FFA500" style="background: #FFA500" title="Orange"></div>
+                                <div class="color-preset" data-color="#800080" style="background: #800080" title="Purple"></div>
+                                <div class="color-preset" data-color="#FFC0CB" style="background: #FFC0CB" title="Pink"></div>
+                                <div class="color-preset" data-color="#808080" style="background: #808080" title="Gray"></div>
+                                <div class="color-preset" data-color="#A52A2A" style="background: #A52A2A" title="Brown"></div>
+                                <div class="color-preset" data-color="#9E1C60" style="background: #9E1C60" title="Magenta"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="tool-section">
-                    <h3>📏 Size</h3>
-                    <input type="range" id="brush-size" min="1" max="50" value="5">
-                    <span id="brush-size-value">5px</span>
-                </div>
-
-                <div class="tool-section">
-                    <h3>🔷 Shapes</h3>
-                    <div class="tool-grid">
-                        <button id="rect-tool" class="tool-btn" data-tool="rectangle" title="Rectangle">
-                            ▭ Rectangle
-                        </button>
-                        <button id="square-tool" class="tool-btn" data-tool="square" title="Square">
-                            ⬜ Square
-                        </button>
-                        <button id="circle-tool" class="tool-btn" data-tool="circle" title="Circle">
-                            ⭕ Circle
-                        </button>
-                        <button id="triangle-tool" class="tool-btn" data-tool="triangle" title="Triangle">
-                            ▲ Triangle
-                        </button>
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">
+                        <span class="title-icon">📏</span>
+                        Brush Size
+                    </h3>
+                    <div class="size-control">
+                        <div class="size-display">
+                            <span id="brush-size-value">5px</span>
+                            <span class="size-preview" id="size-preview"></span>
+                        </div>
+                        <input type="range" id="brush-size" min="1" max="50" value="5" class="size-slider">
+                        <div class="size-markers">
+                            <span>1</span>
+                            <span>25</span>
+                            <span>50</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="tool-section">
-                    <h3>⚡ Actions</h3>
-                    <div class="action-buttons">
-                        <button id="undo-btn" class="action-btn">↶ Undo</button>
-                        <button id="redo-btn" class="action-btn">↷ Redo</button>
-                        <button id="clear-btn" class="action-btn danger">🗑️ Clear</button>
-                    </div>
-                </div>
-
-                <div class="tool-section">
-                    <div class="connection-status">
-                        <span id="connection-indicator" class="status-dot"></span>
-                        <span id="connection-text">Connecting...</span>
+                <div class="sidebar-section info-section">
+                    <div class="info-card">
+                        <div class="info-icon">💡</div>
+                        <div class="info-text">
+                            <strong>Tip:</strong> Use keyboard shortcuts for faster drawing!
+                        </div>
                     </div>
                 </div>
             </aside>

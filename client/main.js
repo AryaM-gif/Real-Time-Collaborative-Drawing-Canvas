@@ -8,7 +8,7 @@
     window.wsManager.connect();
     
     // Tool selection
-    const toolButtons = document.querySelectorAll('.tool-btn');
+    const toolButtons = document.querySelectorAll('.toolbar-btn[data-tool]');
     toolButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             toolButtons.forEach(b => b.classList.remove('active'));
@@ -23,8 +23,26 @@
     
     // Color picker
     const colorInput = document.getElementById('color-input');
+    const colorDisplay = document.getElementById('current-color-display');
+    
+    const updateColorDisplay = (color) => {
+        if (colorDisplay) {
+            colorDisplay.style.background = color;
+            // Convert hex to rgba for shadow
+            const r = parseInt(color.slice(1, 3), 16);
+            const g = parseInt(color.slice(3, 5), 16);
+            const b = parseInt(color.slice(5, 7), 16);
+            colorDisplay.style.boxShadow = `0 4px 12px rgba(${r}, ${g}, ${b}, 0.3)`;
+        }
+    };
+    
+    // Initialize color display
+    updateColorDisplay('#9E1C60');
+    
     colorInput.addEventListener('change', (e) => {
-        window.canvasManager.setColor(e.target.value);
+        const color = e.target.value;
+        window.canvasManager.setColor(color);
+        updateColorDisplay(color);
     });
     
     // Color presets
@@ -34,32 +52,74 @@
             const color = preset.getAttribute('data-color');
             window.canvasManager.setColor(color);
             colorInput.value = color;
+            updateColorDisplay(color);
         });
     });
     
     // Brush size
     const brushSize = document.getElementById('brush-size');
     const brushSizeValue = document.getElementById('brush-size-value');
+    const sizePreview = document.getElementById('size-preview');
+    
+    const updateSizePreview = (size) => {
+        sizePreview.style.width = Math.max(8, size) + 'px';
+        sizePreview.style.height = Math.max(8, size) + 'px';
+    };
+    
     brushSize.addEventListener('input', (e) => {
         const size = parseInt(e.target.value);
         window.canvasManager.setLineWidth(size);
         brushSizeValue.textContent = size + 'px';
+        updateSizePreview(size);
     });
     
-    // Undo/Redo buttons
+    // Initialize size preview
+    updateSizePreview(5);
+    
+    // Undo/Redo buttons (now in toolbar, not sidebar)
     const undoBtn = document.getElementById('undo-btn');
     const redoBtn = document.getElementById('redo-btn');
     
-    undoBtn.addEventListener('click', () => {
-        window.wsManager.undo();
-    });
+    if (undoBtn) {
+        undoBtn.addEventListener('click', () => {
+            window.wsManager.undo();
+        });
+    }
     
-    redoBtn.addEventListener('click', () => {
-        window.wsManager.redo();
-    });
+    if (redoBtn) {
+        redoBtn.addEventListener('click', () => {
+            window.wsManager.redo();
+        });
+    }
     
     // Keyboard shortcuts
     document.addEventListener('keydown', (e) => {
+        // Don't trigger shortcuts when typing in inputs
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+            return;
+        }
+        
+        // Tool shortcuts
+        const toolMap = {
+            'b': 'brush',
+            'l': 'line',
+            'e': 'eraser',
+            'f': 'fill',
+            's': 'sparkle',
+            'r': 'rectangle',
+            'q': 'square',
+            'c': 'circle',
+            't': 'triangle'
+        };
+        
+        if (toolMap[e.key.toLowerCase()]) {
+            const tool = toolMap[e.key.toLowerCase()];
+            const toolBtn = document.querySelector(`[data-tool="${tool}"]`);
+            if (toolBtn) {
+                toolBtn.click();
+            }
+        }
+        
         // Ctrl+Z or Cmd+Z for undo
         if ((e.ctrlKey || e.metaKey) && e.key === 'z' && !e.shiftKey) {
             e.preventDefault();
