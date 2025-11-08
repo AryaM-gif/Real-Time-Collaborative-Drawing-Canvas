@@ -121,6 +121,22 @@ collaborative-canvas/
 **Total**: ~16 hours
 
 ## 🔧 Troubleshooting
+## Testing with Multiple Users
+
+Open multiple browser tabs/windows or devices on the same network.
+Navigate to http://localhost:3000 in each.
+Start drawing in one window — drawings will appear in all others in real-time.
+Test simultaneous drawing, undo/redo, and cursor synchronization.
+
+## Testing Checklist
+
+Real-time drawing sync across all users
+Multiple users drawing simultaneously
+Live cursor indicators
+Global undo/redo working correctly
+Brush/eraser switching
+Color and stroke width changes
+User join/leave updates reflected live
 
 ### Server won't start
 
@@ -139,6 +155,42 @@ collaborative-canvas/
 - Check browser console for JavaScript errors
 - Ensure all client files are being served correctly
 - Verify canvas element exists in DOM
+ ## Core Features
+  ## Real-Time Drawing
+Instant synchronization using WebSockets.
+Smooth stroke rendering and optimized mouse/touch events.
+
+## Tools
+Brush and eraser support
+Adjustable stroke width and color palette
+
+## Multi-User Collaboration
+Each user has a unique color and live cursor indicator
+User list updates dynamically
+
+## Global Undo/Redo
+Undo/redo operations synchronized across all connected clients
+Server maintains shared history
+
+## Architecture Highlights
+
+Event-driven WebSocket model
+Server maintains authoritative drawing state
+Optimized data batching for minimal network latency
+
+## Technical Highlights
+Area	Description
+Canvas Operations	Smooth path rendering, high-frequency input handling
+Real-Time Events	Efficient event serialization and broadcasting
+State Management	Shared undo/redo stack per room
+Latency Handling	Client-side prediction and interpolation
+Scalability	Designed with modular room system for future scaling
+
+## Technical Challenges Solved
+High-Frequency Event Handling — batched and throttled strokes for performance.
+Global Undo/Redo — shared operation history synchronized across users.
+Conflict Resolution — deterministic ordering of events to avoid desync.
+Canvas Consistency — replay of server-approved operations after reconnection.
 
 ## 📝 License
 
@@ -147,4 +199,5 @@ MIT
 ## 👤 Author
 
 Built as a technical assignment demonstrating real-time collaborative application development.
+
 
