@@ -577,6 +577,46 @@ header::before {
     font-weight: 600;
 }
 
+/* History Controls */
+.history-controls {
+    display: flex;
+    gap: 8px;
+    padding: 8px 0;
+}
+
+.sidebar-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: rgba(102, 126, 234, 0.1);
+    border: 1px solid rgba(102, 126, 234, 0.2);
+    border-radius: 8px;
+    color: #667eea;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.sidebar-btn:hover {
+    background: rgba(102, 126, 234, 0.15);
+    transform: translateY(-1px);
+}
+
+.sidebar-btn:active {
+    transform: translateY(0);
+}
+
+.btn-icon {
+    font-size: 18px;
+}
+
+.btn-label {
+    font-weight: 500;
+}
+
 /* Info Card */
 .info-section {
     margin-top: auto;
@@ -799,5 +839,110 @@ header::before {
     .toolbar-btn {
         min-width: 50px;
         padding: 6px 10px;
+    }
+}
+
+/* Mobile / Responsive adjustments */
+@media (max-width: 768px) {
+    /* Container tighter on phones */
+    .container {
+        margin: 8px;
+        border-radius: 12px;
+    }
+
+    /* Make header stack and compress */
+    header {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 12px 16px;
+        gap: 10px;
+    }
+
+    .header-left {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+    }
+
+    .logo {
+        font-size: 18px;
+    }
+
+    /* Top toolbar becomes horizontally scrollable and touch-friendly */
+    .top-toolbar {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding: 6px 0;
+    }
+
+    .top-toolbar .toolbar-group {
+        display: inline-flex;
+        vertical-align: middle;
+        margin-right: 12px;
+    }
+
+    .top-toolbar .toolbar-buttons {
+        display: inline-flex;
+        gap: 8px;
+    }
+
+    /* bigger touch targets for toolbar buttons */
+    .toolbar-btn {
+        padding: 12px 12px;
+        min-width: 48px;
+        min-height: 48px;
+        font-size: 16px;
+        border-radius: 10px;
+        touch-action: manipulation;
+    }
+
+    .toolbar-label {
+        display: none; /* hide labels to save space */
+    }
+
+    /* Hide desktop sidebar on phones, use top toolbar and compact controls */
+    .sidebar {
+        display: none;
+    }
+
+    /* Main content should take remaining viewport height */
+    .main-content {
+        height: calc(100vh - 120px);
+    }
+
+    /* Canvas container should fill available space and be touch-friendly */
+    .canvas-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+    }
+
+    #drawing-canvas, #cursor-layer {
+        width: 100% !important;
+        height: 100% !important;
+        top: 0;
+        left: 0;
+    }
+
+    /* Make sidebar-like sections (when visible) full width if ever shown */
+    .sidebar-section {
+        padding: 8px 0;
+        border-bottom: none;
+        margin-bottom: 12px;
+    }
+
+    /* Increase spacing for clear action so it's easy to tap */
+    .toolbar-btn.action, .sidebar-btn {
+        min-height: 50px;
+    }
+
+    /* Reduce header right area complexity */
+    .header-right {
+        display: flex;
+        align-items: center;
+        gap: 8px;
     }
 }

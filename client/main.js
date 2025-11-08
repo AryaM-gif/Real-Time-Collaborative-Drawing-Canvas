@@ -76,21 +76,7 @@
     // Initialize size preview
     updateSizePreview(5);
     
-    // Undo/Redo buttons (now in toolbar, not sidebar)
-    const undoBtn = document.getElementById('undo-btn');
-    const redoBtn = document.getElementById('redo-btn');
-    
-    if (undoBtn) {
-        undoBtn.addEventListener('click', () => {
-            window.wsManager.undo();
-        });
-    }
-    
-    if (redoBtn) {
-        redoBtn.addEventListener('click', () => {
-            window.wsManager.redo();
-        });
-    }
+    // (Undo/Redo buttons handled below once)
     
     // Keyboard shortcuts
     document.addEventListener('keydown', (e) => {
@@ -132,6 +118,22 @@
         }
     });
     
+    // Undo/Redo buttons (single declaration)
+    const undoBtn = document.getElementById('undo-btn');
+    const redoBtn = document.getElementById('redo-btn');
+
+    if (undoBtn) {
+        undoBtn.addEventListener('click', () => {
+            window.wsManager.undo();
+        });
+    }
+
+    if (redoBtn) {
+        redoBtn.addEventListener('click', () => {
+            window.wsManager.redo();
+        });
+    }
+
     // Clear button
     const clearBtn = document.getElementById('clear-btn');
     clearBtn.addEventListener('click', () => {

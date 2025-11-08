@@ -80,14 +80,6 @@
                 <div class="toolbar-group">
                     <div class="toolbar-label">Actions</div>
                     <div class="toolbar-buttons">
-                        <button id="undo-btn" class="toolbar-btn action" title="Undo (Ctrl+Z)">
-                            <span class="tool-icon">↶</span>
-                            <span class="tool-name">Undo</span>
-                        </button>
-                        <button id="redo-btn" class="toolbar-btn action" title="Redo (Ctrl+Shift+Z)">
-                            <span class="tool-icon">↷</span>
-                            <span class="tool-name">Redo</span>
-                        </button>
                         <button id="clear-btn" class="toolbar-btn action danger" title="Clear Canvas">
                             <span class="tool-icon">🗑️</span>
                             <span class="tool-name">Clear</span>
@@ -157,6 +149,23 @@
                             <span>25</span>
                             <span>50</span>
                         </div>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">
+                        <span class="title-icon">↺</span>
+                        History
+                    </h3>
+                    <div class="history-controls">
+                        <button id="undo-btn" class="sidebar-btn" title="Undo (Ctrl+Z)">
+                            <span class="btn-icon">↶</span>
+                            <span class="btn-label">Undo</span>
+                        </button>
+                        <button id="redo-btn" class="sidebar-btn" title="Redo (Ctrl+Shift+Z)">
+                            <span class="btn-icon">↷</span>
+                            <span class="btn-label">Redo</span>
+                        </button>
                     </div>
                 </div>
 

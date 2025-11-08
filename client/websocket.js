@@ -9,6 +9,14 @@ class WebSocketManager {
     }
 
     connect() {
+        // Guard: if socket.io client script isn't loaded (e.g., running without server),
+        // skip connecting so the rest of the app (local drawing) still works.
+        if (typeof io === 'undefined') {
+            console.warn('socket.io client not found — running in offline/local mode');
+            this.connected = false;
+            return;
+        }
+
         this.socket = io();
         
         this.socket.on('connect', () => {
