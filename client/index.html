@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SyncSketch </title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1 class="logo">
+                <span class="logo-icon">✨</span>
+                <span class="logo-text">Sync</span><span class="logo-text-accent">Sketch</span>
+                <span class="logo-icon">✨</span>
+            </h1>
+            <div class="user-info">
+                <div class="online-users">
+                    <span class="label">Online:</span>
+                    <div id="users-list"></div>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <aside class="toolbar">
+                <div class="tool-section">
+                    <h3>🛠️ Tools</h3>
+                    <div class="tool-grid">
+                        <button id="brush-tool" class="tool-btn active" data-tool="brush" title="Brush">
+                            🖌️ Brush
+                        </button>
+                        <button id="line-tool" class="tool-btn" data-tool="line" title="Straight Line">
+                            📏 Line
+                        </button>
+                        <button id="eraser-tool" class="tool-btn" data-tool="eraser" title="Eraser">
+                            🧹 Eraser
+                        </button>
+                        <button id="fill-tool" class="tool-btn" data-tool="fill" title="Fill Color">
+                            🎨 Fill
+                        </button>
+                        <button id="sparkle-tool" class="tool-btn" data-tool="sparkle" title="Sparkle">
+                            ✨ Sparkle
+                        </button>
+                    </div>
+                </div>
+
+                <div class="tool-section">
+                    <h3>🎨 Color</h3>
+                    <div class="color-picker">
+                        <input type="color" id="color-input" value="#9E1C60">
+                        <div class="color-presets">
+                            <div class="color-preset" data-color="#000000" style="background: #000000"></div>
+                            <div class="color-preset" data-color="#ffffff" style="background: #ffffff; border: 2px solid #ddd"></div>
+                            <div class="color-preset" data-color="#FF0000" style="background: #FF0000"></div>
+                            <div class="color-preset" data-color="#00FF00" style="background: #00FF00"></div>
+                            <div class="color-preset" data-color="#0000FF" style="background: #0000FF"></div>
+                            <div class="color-preset" data-color="#FFFF00" style="background: #FFFF00"></div>
+                            <div class="color-preset" data-color="#FFA500" style="background: #FFA500"></div>
+                            <div class="color-preset" data-color="#800080" style="background: #800080"></div>
+                            <div class="color-preset" data-color="#FFC0CB" style="background: #FFC0CB"></div>
+                            <div class="color-preset" data-color="#808080" style="background: #808080"></div>
+                            <div class="color-preset" data-color="#A52A2A" style="background: #A52A2A"></div>
+                            <div class="color-preset" data-color="#9E1C60" style="background: #9E1C60"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tool-section">
+                    <h3>📏 Size</h3>
+                    <input type="range" id="brush-size" min="1" max="50" value="5">
+                    <span id="brush-size-value">5px</span>
+                </div>
+
+                <div class="tool-section">
+                    <h3>🔷 Shapes</h3>
+                    <div class="tool-grid">
+                        <button id="rect-tool" class="tool-btn" data-tool="rectangle" title="Rectangle">
+                            ▭ Rectangle
+                        </button>
+                        <button id="square-tool" class="tool-btn" data-tool="square" title="Square">
+                            ⬜ Square
+                        </button>
+                        <button id="circle-tool" class="tool-btn" data-tool="circle" title="Circle">
+                            ⭕ Circle
+                        </button>
+                        <button id="triangle-tool" class="tool-btn" data-tool="triangle" title="Triangle">
+                            ▲ Triangle
+                        </button>
+                    </div>
+                </div>
+
+                <div class="tool-section">
+                    <h3>⚡ Actions</h3>
+                    <div class="action-buttons">
+                        <button id="undo-btn" class="action-btn">↶ Undo</button>
+                        <button id="redo-btn" class="action-btn">↷ Redo</button>
+                        <button id="clear-btn" class="action-btn danger">🗑️ Clear</button>
+                    </div>
+                </div>
+
+                <div class="tool-section">
+                    <div class="connection-status">
+                        <span id="connection-indicator" class="status-dot"></span>
+                        <span id="connection-text">Connecting...</span>
+                    </div>
+                </div>
+            </aside>
+
+            <div class="canvas-container">
+                <canvas id="drawing-canvas"></canvas>
+                <canvas id="cursor-layer"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="canvas.js"></script>
+    <script src="websocket.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
