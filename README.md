@@ -2,7 +2,7 @@
 
 A multi-user drawing application where multiple people can draw simultaneously on the same canvas with real-time synchronization.
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### Prerequisites
 
@@ -41,7 +41,7 @@ For development with auto-reload:
 npm run dev
 ```
 
-## 🧪 Testing with Multiple Users
+##  Testing with Multiple Users
 
 1. **Open multiple browser windows/tabs** or use different devices on the same network
 2. Navigate to `http://localhost:3000` in each window
@@ -59,7 +59,7 @@ npm run dev
 - ✅ Color and brush size changes
 - ✅ User list updates when users join/leave
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 collaborative-canvas/
@@ -79,7 +79,7 @@ collaborative-canvas/
 └── ARCHITECTURE.md
 ```
 
-## 🎨 Features
+##  Features
 
 ### Core Features
 
@@ -181,15 +181,18 @@ Conflict Resolution — deterministic ordering of events to avoid desync.
 Canvas Consistency — replay of server-approved operations after reconnection.
 
 ## Link
-web-production-ecc08.up.railway.app
 
-## 📝 License
+##  Live Website
+ web-production-ecc08.up.railway.app
+
+##  License
 
 MIT
 
-## 👤 Author
+##  Author
 
 Built as a technical assignment demonstrating real-time collaborative application development.
+
 
 
 
